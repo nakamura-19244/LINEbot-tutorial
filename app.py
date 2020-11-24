@@ -73,12 +73,25 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text="Hello World")
          )
+    elif "たい" in text:
+        img_url = "https://taisoda-ezaki-lab.herokuapp.com/static/images/tai.png"
+        line_bot_api.reply_message(
+            event.reply_token,
+            [
+                TextSendMessage(text="たい！"),
+                ImageSendMessage(img_url, img_url)
+            ]
+         )
+    elif "通知" in text:
+        # 全ユーザにプッシュ
+        line_bot_api.broadcast(
+            TextSendMessage(text="通知テスト")
+        )
     else:
     	line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="「" + text + "」って何？")
          )
-
 
 
 
